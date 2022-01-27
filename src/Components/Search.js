@@ -1,25 +1,9 @@
 import react, { useState } from "react";
 import Weather from "./Weather";
+import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
 
 const Search = () => {
-
-    const styles = {
-        input: {
-            appearance: 'none',
-            border: '1px solid black',
-            padding: '10px',
-            borderRadius: '4px'
-        },
-        button: {
-            padding: '10px',
-            appearance: 'none',
-            border: '1px solid black',
-            textTransform: 'uppercase',
-            borderRadius: '4px',
-            background: 'black',
-            color: 'white'
-        }
-    }
 
     const [searchText, setSearchText] = useState("")
     const [location ,setLocation] = useState({})
@@ -27,8 +11,6 @@ const Search = () => {
     const [error, setError] = useState(undefined)
 
     const API_KEY = "7f3057c1909d4356bfb22040221301"
-
-    
 
     const changeHandler = (event) => {
         setSearchText(event.target.value)
@@ -53,8 +35,11 @@ const Search = () => {
     }
     return (
         <>
-            <input type="search" value={searchText} onChange={changeHandler} style={styles.input}/>
-            <button onClick={handleSearch} style={styles.button}> Search </button>
+            <div className="Search">
+                <TextField sx={{marginRight: '5px'}} size="small" label="City Name" variant="outlined" value={searchText} onChange={changeHandler} />
+                <Button sx={{lineHeight: '1.98'}} variant="contained" size="medium" onClick={handleSearch}> Search </Button>
+            </div>
+            
             {
                 location && location.name && current && current.condition && <Weather location={location} current={current}/>
             }

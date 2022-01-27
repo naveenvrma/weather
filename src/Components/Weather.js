@@ -1,6 +1,10 @@
 import react from "react";
 
-const Weather = ({location,current}) => {
+const Weather = (props) => {
+    // const {location,current} = props
+    const location = props.location
+    const current = props.current
+const PI = 3.14
     const {name,region,country} = location
     const {condition,temp_c, feelslike_c} = current
     const styles = {
